@@ -7,17 +7,77 @@
     <link rel="stylesheet" href="stlo.css">
 </head>
 <body>
-    <h1><i>Bodycam</i></h1>
-    <div class="video-container">
+    <h1 id="text"><i>Bodycam</i></h1>
+    <section class="video-container">
         <iframe src="https://www.youtube.com/embed/YiGik04b4xQ?si=8ceme2v2tD-ik_rB?autoplay=1&muted=1"
          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
          encrypted-media; gyroscope; picture-in-picture; web-share" 
          referrerpolicy="strict-origin-when-cross-origin" frameborder="0" allowfullscreen>
         </iframe>
-    </div>
+    </section>
     <section>
-        <button>Juega Ahora
+        <button id="custom-btn">Agregar elemento
         </button>
     </section>
+    <script>
+        //clase padre
+        class automovil {
+            constructor(color,placa){
+                this.color = color,
+                this.placa =placa
+            }
+            encender(){
+            console.log(`El auto enciende`)
+            }
+        }
+        //clase hija
+        class Carro extends automovil{
+            constructor(color,placa,motor){
+                super(color, placa),
+                this.motor = motor
+            }
+            encender(){
+                console.log(`El auto con motor ${this.motor} enciende`)
+            }
+
+            //editar elemento
+            editText(){
+                const text = document.getElementById("text")
+                text.innerText = "Esto es un Guardado"
+            }
+
+            //crear elemento
+            createElement(){
+                const newelement = document.createElement("p")
+                newelement.className = "class-new-element"
+                newelement.id = "new-element-id"
+                newelement.innerText = "Esto es creado"
+
+                const contenedor = document.getElementById("contenedor")
+                contenedor.append(newelement)
+            }
+
+            //eliminar elemento
+            deleteElement(){
+                const text = document.getElementById("text")
+                text.remove()
+            }
+        }
+        //instancias
+        const a2 = new Carro ("Rojo", "cvt-054", "v6")
+
+        //llamada de metodos 
+        a2.editText()
+        //a2.createElement()
+        //a2.deleteElement()
+
+
+        //agregando funcionalidad al boton
+        const btnCustom = document.getElementById("custom-btn")
+        btnCustom.onclick = () => {
+            a2.createElement()
+        }
+        
+    </script>
 </body>
 </html>
